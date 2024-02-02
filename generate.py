@@ -10,8 +10,8 @@ import pyrosim.pyrosim as pyrosim
 
 
 #initialize pyroism
-pyrosim.Start_SDF("boxes.sdf")
+pyrosim.Start_SDF("world.sdf")
 #create box at origin
-pyrosim.Send_Cube(name="Box", pos=[0,0,0] , size=[1,1,1])
+pyrosim.Send_Cube(name="Box", pos=[0,0,0.5] , size=[1,1,1])
 
 pyrosim.End()
