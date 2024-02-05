@@ -19,15 +19,15 @@ def CreateWorld():
 def CreateRobot():
     pyrosim.Start_URDF("body.urdf")
     #creat the torso with absolute coordinates since it is the root
-    pyrosim.Send_Cube(name="Torso", pos=[0,1.5,1.5] , size=[1,1,1])
+    pyrosim.Send_Cube(name="Torso", pos=[1.5,0,1.5] , size=[1,1,1])
     #create the first joint in relation to the torso
-    pyrosim.Send_Joint(name = "Torso_BackLeg" , parent= "Torso" , child = "BackLeg" , type = "revolute", position = [0,1.0,1.0])
+    pyrosim.Send_Joint(name = "Torso_BackLeg" , parent= "Torso" , child = "BackLeg" , type = "revolute", position = [1.0,0,1.0])
     #create the back leg
-    pyrosim.Send_Cube(name="BackLeg", pos=[0,-0.5,-0.5] , size=[1,1,1])
+    pyrosim.Send_Cube(name="BackLeg", pos=[-0.5, 0 ,-0.5] , size=[1,1,1])
     #create joint between the torso and the front leg
-    pyrosim.Send_Joint(name = "Torso_FrontLeg" , parent= "Torso" , child = "FrontLeg" , type = "revolute", position = [0,1.0,0])
+    pyrosim.Send_Joint(name = "Torso_FrontLeg" , parent= "Torso" , child = "FrontLeg" , type = "revolute", position = [2.0,0,1.0])
     #create front leg link
-    pyrosim.Send_Cube(name="FrontLeg", pos=[0,1.5,0.5] , size=[1,1,1])
+    pyrosim.Send_Cube(name="FrontLeg", pos=[0.5, 0 , -0.5] , size=[1,1,1])
 
     pyrosim.End()
 
