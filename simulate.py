@@ -2,6 +2,7 @@
 import pybullet as p
 import time
 import pybullet_data
+import math 
 import numpy as np
 import pyrosim.pyrosim as pyrosim
 
@@ -37,10 +38,21 @@ for x in range(1,1000):
 
     controlMode = p.POSITION_CONTROL, 
 
-    targetPosition = 0.0,
+    targetPosition = -1 * math.pi/5,
 
     maxForce = 500)
     #sleep
+    pyrosim.Set_Motor_For_Joint(
+
+    bodyIndex = robotId, 
+
+    jointName = "Torso_FrontLeg",
+
+    controlMode = p.POSITION_CONTROL, 
+
+    targetPosition =  math.pi/5,
+
+    maxForce = 500)
     time.sleep(1/50)
 np.save("/Users/abbeyknobel/Desktop/CS3060/cs-3050/data/backleg_sensor_values", backLegSensorValues)
 np.save("/Users/abbeyknobel/Desktop/CS3060/cs-3050/data/frontleg_sensor_values", frontLegSensorValues)
