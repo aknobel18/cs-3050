@@ -6,19 +6,20 @@ from world import WORLD
 import pyrosim.pyrosim as pyrosim
 class SIMULATION:
 
+
     def __init__(self):
         
         #create the physics client object 
         physicsClient = p.connect(p.GUI)
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
 
+
         #import gravity
         p.setGravity(0,0,-9.8)
-        #add robot 
-        robotId = p.loadURDF("body.urdf")
-        #load box
-        p.loadSDF("world.sdf")
 
+        #create instances of world and robot
         self.world = WORLD()
         self.robot = ROBOT()
+        
+
 

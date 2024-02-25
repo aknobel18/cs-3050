@@ -11,6 +11,9 @@ import constants as c
 from simulation import SIMULATION
 
 simulation = SIMULATION()
+for x in range(1,1000):
+    p.stepSimulation()
+    time.sleep(1/240)
 
 #create the physics client object 
 #physicsClient = p.connect(p.GUI)
@@ -26,7 +29,7 @@ simulation = SIMULATION()
 #p.loadSDF("world.sdf")
 #create numpy array to store sensor values
 #backLegSensorValues = np.zeros(1000)
-#frontLegSensorValues = np.zeros(1000)z
+#frontLegSensorValues = np.zeros(1000)
 
 #pyrosim.Prepare_To_Simulate(robotId)
 #create sinusoidal movement for robot
