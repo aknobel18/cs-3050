@@ -20,6 +20,17 @@ class SIMULATION:
         #create instances of world and robot
         self.world = WORLD()
         self.robot = ROBOT()
-        
+        self.Run()
+    
+    def Run(self):
+        #for loop to perform simulation
+        for x in range(1,1000):
+            p.stepSimulation()
+            self.robot.Sense(x)
+            self.robot.Act(x)
 
+            time.sleep(1/60)
 
+    def __del__(self):
+
+        p.disconnect()
