@@ -26,11 +26,12 @@ class SIMULATION:
         #for loop to perform simulation
         for x in range(1,1000):
             p.stepSimulation()
+            print(x)
             self.robot.Sense(x)
             self.robot.Think()
             self.robot.Act(x)
 
-            time.sleep(1/40)
+            time.sleep(1/80)
 
     def __del__(self):
 
