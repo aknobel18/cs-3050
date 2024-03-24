@@ -1,5 +1,6 @@
 import pyrosim.pyrosim as pyrosim
 import pybullet as p
+import sys
 from sensor import SENSOR
 from motor import MOTOR
 from pyrosim.neuralNetwork import NEURAL_NETWORK 
@@ -21,7 +22,7 @@ class ROBOT:
 
     def Think(self):
         self.nn.Update()
-        self.nn.Print()
+        #self.nn.Print()
 
     def Sense(self, x):
         for sensor in self.sensors.values():
@@ -38,3 +39,11 @@ class ROBOT:
                 jointName = self.nn.Get_Motor_Neurons_Joint(neuronName)
                 desiredAngle = self.nn.Get_Value_Of(neuronName)
                 self.motors[jointName].Set_Value(self.robotId, desiredAngle)
+    
+    def Get_Fitness(self):
+        self.stateOfLinkZero = p.getLinkState(self.robotId,0)
+        self.positionOfLinkZero = self.stateOfLinkZero[0]
+        self.xCoordinateOfLinkZero = self.positionOfLinkZero[0]
+        print(f"\nFitness: {self.xCoordinateOfLinkZero}\n")
+        with open("fitness.txt", "w") as file:
+            file.write(str(self.xCoordinateOfLinkZero))

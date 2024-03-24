@@ -1,16 +1,21 @@
 import pybullet as p
 import time
 import pybullet_data
+import logging
 from robot import ROBOT
 from world import WORLD 
 import pyrosim.pyrosim as pyrosim
 class SIMULATION:
 
 
-    def __init__(self):
+    def __init__(self, directOrGUI):
         
         #create the physics client object 
-        physicsClient = p.connect(p.GUI)
+        if directOrGUI == 'DIRECT':
+            physicsClient = p.connect(p.DIRECT)
+            logging.basicConfig(level=logging.ERROR)
+        else:
+            physicsClient = p.connect(p.GUI)
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
 
 
@@ -26,12 +31,14 @@ class SIMULATION:
         #for loop to perform simulation
         for x in range(1,550):
             p.stepSimulation()
-            print(x)
             self.robot.Sense(x)
             self.robot.Think()
             self.robot.Act(x)
 
             time.sleep(1/80)
+    
+    def Get_Fitness(self):
+        self.robot.Get_Fitness()
 
     def __del__(self):
 
