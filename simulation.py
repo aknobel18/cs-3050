@@ -8,7 +8,7 @@ import pyrosim.pyrosim as pyrosim
 class SIMULATION:
 
 
-    def __init__(self, directOrGUI):
+    def __init__(self, directOrGUI, solutionID):
         
         #create the physics client object 
         if directOrGUI == 'DIRECT':
@@ -24,12 +24,12 @@ class SIMULATION:
 
         #create instances of world and robot
         self.world = WORLD()
-        self.robot = ROBOT()
+        self.robot = ROBOT(solutionID)
         self.Run()
     
     def Run(self):
         #for loop to perform simulation
-        for x in range(1,550):
+        for x in range(1,350):
             p.stepSimulation()
             self.robot.Sense(x)
             self.robot.Think()
@@ -41,5 +41,4 @@ class SIMULATION:
         self.robot.Get_Fitness()
 
     def __del__(self):
-
         p.disconnect()
